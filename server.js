@@ -2,27 +2,30 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const Redis = require("redis")
-const redisClient = Redis.createClient();
+const redisClient = Redis.createClient({url:'redis://127.0.0.1:6379'});
 
 const port = 3000;
 app.listen(port, ()=> {
-    redisClient.connect();
+    redisClient.connect(); //the API Sever is trying to connect with Redis
     console.log("Listening on port: " + port)
 });
 
-app.use(bodyParser.json());
+app.use(bodyParser.json()); //allow JSON (Javascript Object Notation) requests
 
 app.get('/',(req,res) => {
     res.send("Welcome to Ryan's Node Server! :)")
     // res.redirect("http://google.com")
 })
 
-app.post("/login", (req,res) => {
+app.post("/login", async (req,res) => {
     const loginBody = req.body;
     const userName = loginBody.userName;
     const password = loginBody.password;
-    if (password === "P@ssw0r") {
-        res.send("welcome "+ userName);
+    const redisPassword = await redisClient.hGet('users',userName);
+    console.log("Password for " + userName + " " + redisPassword);
+    if (redisPassword != null && password == redisPassword) {
+        
+        res.send("Welcome "+ userName);
     }
     else {
         res.status(401); //unathorized
