@@ -10,8 +10,9 @@ const fs = require('fs');
 const port = 3000;
 
 https.createServer({
-    key: fs.readFileSync('server.key'),
-    cert: fs.readFileSync('server.cert')
+    key: fs.readFileSync('privkey1.pem'),
+    cert: fs.readFileSync('cert1.pem'),
+    chain: fs.readFileSync('fullchain1.pem')
   }, app).listen(3000, () => {
     console.log('Listening...')
   })
