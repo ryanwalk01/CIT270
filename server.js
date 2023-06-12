@@ -7,13 +7,13 @@ const {createHash} = require('node:crypto');
 const https = require('https')
 const fs = require('fs');
 
-const port = 3000;
+const port = 443;
 
 https.createServer({
     key: fs.readFileSync('/etc/letsencrypt/archive/ryanwalker.cit270.com/privkey1.pem'),
     cert: fs.readFileSync('/etc/letsencrypt/archive/ryanwalker.cit270.com/cert1.pem'),
     chain: fs.readFileSync('/etc/letsencrypt/archive/ryanwalker.cit270.com/fullchain1.pem')
-  }, app).listen(3000, () => {
+  }, app).listen(port, () => {
     redisClient.connect();
     console.log('Listening...')
   });
