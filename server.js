@@ -7,21 +7,21 @@ const {createHash} = require('node:crypto');
 const https = require('https')
 const fs = require('fs');
 
-const port = 443;
+const port = 3000;
 
-https.createServer({
-    key: fs.readFileSync('/etc/letsencrypt/archive/ryanwalker.cit270.com/privkey1.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/archive/ryanwalker.cit270.com/cert1.pem'),
-    ca: fs.readFileSync('/etc/letsencrypt/archive/ryanwalker.cit270.com/chain1.pem')
-  }, app).listen(port, () => {
-    redisClient.connect();
-    console.log('Listening...')
-  });
+// https.createServer({
+//     key: fs.readFileSync('/etc/letsencrypt/archive/ryanwalker.cit270.com/privkey1.pem'),
+//     cert: fs.readFileSync('/etc/letsencrypt/archive/ryanwalker.cit270.com/cert1.pem'),
+//     ca: fs.readFileSync('/etc/letsencrypt/archive/ryanwalker.cit270.com/chain1.pem')
+//   }, app).listen(port, () => {
+//     redisClient.connect();
+//     console.log('Listening...')
+//   });
   
-// app.listen(port, ()=> {
-//     redisClient.connect(); //the API Sever is trying to connect with Redis
-//     console.log("Listening on port: " + port)
-// });
+app.listen(port, ()=> {
+    redisClient.connect(); //the API Sever is trying to connect with Redis
+    console.log("Listening on port: " + port)
+});
 
 app.use(bodyParser.json()); //allow JSON (Javascript Object Notation) requests
 
