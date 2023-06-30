@@ -46,7 +46,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: service-ryan-nodeport
+  name: stedi-ryan-nodeport
 spec:
   selector:
     app: cit270ryanservice # this needs to match the name of your deployment (line 6)
@@ -58,7 +58,7 @@ spec:
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
-  name: service-ryan-certificate2
+  name: stedi-ryan-certificate2
 spec:
   domains:
     - ryanwalker.cit270.com # this needs to be your domain name from DNS
@@ -66,12 +66,12 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: service-ryan-ingress
+  name: stedi-ryan-ingress
   annotations:
   # Use this command to find the address name: gcloud compute addresses list 
     kubernetes.io/ingress.global-static-ip-name: cit270ryan
   # needs to match the name of the ManagedCertificate (line 75)
-    networking.gke.io/managed-certificates: service-ryan-certificate2
+    networking.gke.io/managed-certificates: stedi-ryan-certificate2
 spec:
   rules:
   - http:
@@ -81,6 +81,6 @@ spec:
         backend:
           service:
           # needs to match the name of the NodePort Service (line 63)
-            name: service-ryan-nodeport
+            name: stedi-ryan-nodeport
             port:
               number: 80
