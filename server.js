@@ -2,7 +2,10 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const Redis = require("redis")
-const redisClient = Redis.createClient({url:'redis://default@redis-stedi-ryan:6379/0'});
+const redisClient = Redis.createClient({
+host: 'redis-stedi-ryan',
+port: 6379,
+});
 const {createHash} = require('node:crypto');
 const https = require('https');
 const fs = require('fs');
