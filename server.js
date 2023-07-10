@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const Redis = require("redis")
-const redisClient = Redis.createClient({url:'redis://default:redis-stedi-ryan:6379'});
+const redisClient = Redis.createClient({url:'redis://default@redis-stedi-ryan:6379'});
 const {createHash} = require('node:crypto');
 const https = require('https')
 const fs = require('fs');
@@ -26,7 +26,7 @@ app.listen(port, ()=> {
 app.use(bodyParser.json()); //allow JSON (Javascript Object Notation) requests
 
 app.get('/',(req,res) => {
-    res.send("Welcome to Ryan's Node Server! :)")
+    res.send("Welcome to Ryan's Node Server!")
     // res.redirect("http://google.com")
 })
 
