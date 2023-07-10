@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const Redis = require("redis")
 const redisClient = Redis.createClient({
-host: '10.68.0.12',
+host: 'redis-stedi-ryan',
 port: 6379
 });
 const {createHash} = require('node:crypto');
@@ -22,7 +22,7 @@ const port = 3000;
 //   });
   
 app.listen(port, ()=> {
-    redisClient.connect(); //the API Sever is trying to connect with Redis
+    client.on('error', err => console.log('Redis Server Error', err)); //the API Sever is trying to connect with Redis
     console.log("Listening on port: " + port)
 });
 
