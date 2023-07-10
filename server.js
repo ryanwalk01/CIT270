@@ -22,7 +22,7 @@ const port = 3000;
 //   });
   
 app.listen(port, ()=> {
-    client.on('error', err => console.log('Redis Server Error', err)); //the API Sever is trying to connect with Redis
+    redisClient.on('error', err => console.log('Redis Server Error', err)); //the API Sever is trying to connect with Redis
     console.log("Listening on port: " + port)
 });
 
