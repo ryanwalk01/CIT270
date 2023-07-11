@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const Redis = require("redis")
 const redisClient = Redis.createClient({
-host: 'redis-stedi-ryan',
+host: '10.68.0.12',
 port: 6379
 });
 const {createHash} = require('node:crypto');
