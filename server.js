@@ -21,11 +21,11 @@ const port = 3000;
 //     console.log('Listening...')
 //   });
   
-app.listen(port, ()=> {
+app.listen(port,(async ()=> {
     redisClient.on('error', err => console.log('Redis Server Error', err)); 
     redisClient.connect(); //the API Sever is trying to connect with Redis
     console.log("Listening on port: " + port)
-});
+}));
 
 app.use(bodyParser.json()); //allow JSON (Javascript Object Notation) requests
 
