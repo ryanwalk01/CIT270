@@ -41,7 +41,7 @@ app.post("/login", async (req,res) => {
     const password = loginBody.password;
     const hashedPassword = password == null ? null: createHash('sha3-256').update(password).digest('hex');
     console.log("Hashed Password: " + hashedPassword);
-    const redisPassword = password == null ? null: await redisClient.hGet('hashedpasswords',userName);
+    const redisPassword = await redisClient.hGet('hashedpasswords',userName);
     console.log("Password for " + userName + " " + redisPassword);
     if (password != null && hashedPassword == redisPassword) {
         
