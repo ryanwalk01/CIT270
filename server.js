@@ -36,11 +36,6 @@ async function startServer() {
   app.get("/", (req, res) => {
     res.send("Welcome to Ryan's Node Server!");
   });
-  
-app.listen(port, ()=> {
-    redisClient.connect(); //the API Sever is trying to connect with Redis
-    console.log("Listening on port: " + port);
-});
 
 app.use(bodyParser.json()); //allow JSON (Javascript Object Notation) requests
 
