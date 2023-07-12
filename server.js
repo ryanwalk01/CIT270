@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const Redis = require("redis")
 const redisClient = Redis.createClient({
     socket: {
-        host: '10.68.0.12',
+        host: 'redis-stedi-ryan',
         port: '6379'
     }
 });
